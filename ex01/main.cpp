@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:35:45 by graja             #+#    #+#             */
-/*   Updated: 2022/03/09 15:07:32 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/10 14:43:47 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "templates.hpp"
 
 static
-void	printit(t_test *adr)
+void	printit(t_test *adr, int max)
 {
 	int	i = 0;
-	while (i < 10)
+	while (i < max)
 	{
 		std::cout << i << ") " << adr << std::endl;
-		std::cout << adr->name << std::endl;
+		std::cout << adr->name << ", " << adr->num << ", " << adr->val << std::endl;
+		std::cout << std::endl;
 		adr++;
 		i++;
 	}
@@ -29,9 +30,10 @@ void	printit(t_test *adr)
 static
 void	here_test(t_test *adr)
 {
-	adr->name = "Default";
-	adr->num = 42;
-	adr->val = true;
+	std::cout << adr << std::endl;
+	adr->name = "Default_";
+	adr->num = rand() % 1000;
+	adr->val = rand() % 2;
 }
 
 static
@@ -45,13 +47,18 @@ void	test(int *adr)
 
 int	main(void)
 {
-	int			*a[20];
-	unsigned char	len = 20;
-	t_test			*here = new t_test[10];
-	int			here_len = 10;
+	int			arr[5] = {12, 41, 33, 7, -12};
+	int			*a;
+	unsigned char	len = 5;
+	t_test			arrhere[7];
+	t_test			*here;
+	int			here_len = 7;
 
-	iter(a[0], len, test);
+	srand(time(NULL));
+	a = &arr[0];
+	here = &arrhere[0];
+	iter(a, len, test);
 	iter(here, here_len, here_test);
-	printit(here);
+	printit(here, here_len);
 	return (0);
 }
