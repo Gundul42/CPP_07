@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:24:46 by graja             #+#    #+#             */
-/*   Updated: 2022/03/10 14:38:12 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/10 14:55:52 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,17 @@ typedef	struct s_test
  * save them.
 */
 template <typename T, typename U, typename V>
-void	iter(T & adress, U & length, V & func)
+void	iter(T const & adress, U const & length, V const & func)
 {
-	T	tmp;
-	U	cpy;
+	T	adr = adress;
+	U	cpy = length;
 
-	cpy = length;
-	tmp = adress;
-	while (length > 0)
+	while (cpy > 0)
 	{
-		func(adress);
-		adress += 1;
-		length--;
+		func(adr);
+		adr += 1;
+		cpy--;
 	}
-	adress = tmp;
-	length = cpy;
 }
 
 #endif
