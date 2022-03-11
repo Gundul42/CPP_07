@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:35:45 by graja             #+#    #+#             */
-/*   Updated: 2022/03/10 14:43:47 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/11 12:29:20 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void	printit(t_test *adr, int max)
 static
 void	here_test(t_test *adr)
 {
-	std::cout << adr << std::endl;
-	adr->name = "Default_";
+	std::string	rnd[3] = {"Default", "Test", "Tak_ada"};
+	std::cout << adr << " initialized." << std::endl;
+	adr->name = rnd[rand() % 3];
 	adr->num = rand() % 1000;
 	adr->val = rand() % 2;
 }
@@ -41,24 +42,27 @@ void	test(int *adr)
 {
 	static int	i = 0;
 
-	std::cout << adr << " : " << *adr << " : " << i << ") Called" << std::endl;
+	std::cout << i << ") Called " << adr << " : " << *adr << std::endl;
 	i++;
 }
 
 int	main(void)
 {
 	int			arr[5] = {12, 41, 33, 7, -12};
-	int			*a;
+	float			far[5] = {9.31, 123.2, 19.923, 22.1, 0.8263};
+
 	unsigned char	len = 5;
 	t_test			arrhere[7];
 	t_test			*here;
 	int			here_len = 7;
 
 	srand(time(NULL));
-	a = &arr[0];
-	here = &arrhere[0];
-	iter(a, len, test);
-	iter(here, here_len, here_test);
-	printit(here, here_len);
+	iter(&(arr[0]), len, test);
+	iter(&(arrhere[0]), here_len, here_test);
+	printit(&(arrhere[0]), here_len);
+	iter(&(arr[0]), len, ft_double);
+	std::cout << std::endl << "Double check the new values:" << std::endl;
+	iter(&(arr[0]), len, test);
+	iter(&(far[0]), len, ft_parr); 
 	return (0);
 }
