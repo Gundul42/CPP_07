@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:24:46 by graja             #+#    #+#             */
-/*   Updated: 2022/03/11 18:38:05 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/12 17:58:02 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,89 @@
 
 # include <stdexcept>
 
+// This is a template ! No reason to look for a cpp file.
+// There isn't any. It is just a blueprint for the compiler
+// and filled by the compiler itself, unused stuff will be
+// automatically omitted.
 template <typename T>
 class Array
 {
 	private:
-		unsigned int const	_member;
+		unsigned int 	_member;
 		T*				_array;
 
 	public:
+		// Default constructor
 		Array(void): _member(0), _array(NULL){};
-		Array(unsigned int n): _member(n), _array(new T[n]()) {};
-		Array(T & cpy): _member(cpy.size()), _array(new T[cpy.size()]()) {};
-		~Array(void){if (this->_array) delete [] this->_array;};
-//		T &	operator=(T const & right);
 
-		unsigned int	size(void){return (this->_member);};
+		// Constructor taking number of elements as paramter
+		Array(unsigned int n): _member(n)
+		{
+			if (n)
+				this->_array = new T[n]();
+			else
+				this->_array = NULL;
+		}
+
+		//Copy constructor
+		Array(Array const & cpy): _member(cpy.size())
+		{	
+			std::cout << "Copy contructor called" << std::endl;
+			if (cpy.size())
+				this->_array = new T[cpy.size()]();
+			else
+				this->_array = NULL;
+		}
+
+		//Destructor freeing all used memory
+		~Array(void)
+			{
+				std::cout << "destructor called" << std::endl;
+				if (this->_array) 
+					delete [] _array;
+			}
+
+		//assignment operator overload
+		//copying one array the the other
+		Array &	operator=(Array const & right)
+		{
+			unsigned int	i = 0;
+
+			std::cout << "left=" << _member << ", right =" << right.size();
+			std::cout << std::endl;
+			
+			if (&right == this)
+				return (*this);
+			if (right.size())
+				this->_array = new T[right.size()]();
+			while (i < right.size())
+			{
+				this->_array[i] = right._array[i];
+				i++;
+			}
+			return (*this);
+		}
+		
+		//operator overload to read values from the array
+		T &	operator[](int & n) 
+		{
+			if (n < 0 || n > (this->size() - 1))
+				throw std::exception();
+			else
+				return (this->_array[n]);
+		}
+		
+		//operator overload to assign values to the array
+		T &	operator[](int const & n) const
+		{
+			if (n < 0 || n > (this->size() - 1) || !(this->_array))
+				throw std::exception();
+			else
+				return (this->_array[n]);
+		}
+		
+		//returns size of array
+		unsigned int const	size(void) const {return (this->_member);};
 };
 
 #endif

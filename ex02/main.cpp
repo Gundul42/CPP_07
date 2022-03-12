@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:35:45 by graja             #+#    #+#             */
-/*   Updated: 2022/03/11 18:18:29 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/12 17:59:20 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 
 int	main(void)
 {
-	int	*arr = new int[10];
-	int		i = 0;
 	Array<int>	test(10);
+	Array<int>	cpy;
+	int			i = 0;
 
+	cpy = test;
+	test[5] = 123;
+	test[9] = 100;
+	test[1] = 10;
 	while (i < 10)
 	{
-		std::cout << i << ") " << arr[i] << std::endl;
+		std::cout << i << ") " << test[i] << "\t\t" << cpy[i] << std::endl;
 		i++;
 	}
-	delete [] arr;
 	return (0);
 }
