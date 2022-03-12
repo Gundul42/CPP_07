@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:24:46 by graja             #+#    #+#             */
-/*   Updated: 2022/03/12 17:58:02 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/12 18:22:56 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ class Array
 		//Copy constructor
 		Array(Array const & cpy): _member(cpy.size())
 		{	
-			std::cout << "Copy contructor called" << std::endl;
 			if (cpy.size())
 				this->_array = new T[cpy.size()]();
 			else
@@ -52,7 +51,6 @@ class Array
 		//Destructor freeing all used memory
 		~Array(void)
 			{
-				std::cout << "destructor called" << std::endl;
 				if (this->_array) 
 					delete [] _array;
 			}
@@ -62,12 +60,12 @@ class Array
 		Array &	operator=(Array const & right)
 		{
 			unsigned int	i = 0;
-
-			std::cout << "left=" << _member << ", right =" << right.size();
-			std::cout << std::endl;
 			
 			if (&right == this)
 				return (*this);
+			if (this->size())
+				delete [] this->_array;
+			this->_member = right.size();
 			if (right.size())
 				this->_array = new T[right.size()]();
 			while (i < right.size())

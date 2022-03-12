@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:35:45 by graja             #+#    #+#             */
-/*   Updated: 2022/03/12 17:59:20 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/12 18:13:19 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(void)
 {
 	Array<int>	test(10);
-	Array<int>	cpy;
+	Array<int>	cpy(5);
 	int			i = 0;
 
 	cpy = test;
