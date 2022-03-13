@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:24:46 by graja             #+#    #+#             */
-/*   Updated: 2022/03/12 18:22:56 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/13 08:46:55 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,9 @@ class Array
 		}
 
 		//Copy constructor
-		Array(Array const & cpy): _member(cpy.size())
+		Array(Array const & cpy): _member(cpy.size()), _array(NULL)
 		{	
-			if (cpy.size())
-				this->_array = new T[cpy.size()]();
-			else
-				this->_array = NULL;
+			*this = cpy;
 		}
 
 		//Destructor freeing all used memory
@@ -68,6 +65,8 @@ class Array
 			this->_member = right.size();
 			if (right.size())
 				this->_array = new T[right.size()]();
+			else
+				this->_array = NULL;
 			while (i < right.size())
 			{
 				this->_array[i] = right._array[i];
