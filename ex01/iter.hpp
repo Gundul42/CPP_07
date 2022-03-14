@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   templates.hpp                                      :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:24:46 by graja             #+#    #+#             */
-/*   Updated: 2022/03/11 12:30:06 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/14 13:00:02 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATES_H
-# define TEMPLATES_H
+#ifndef ITER_H
+# define ITER_H
 
+//This is a sample struct to show that with
+//a template really anything can be given to the <typename T>
 typedef	struct s_test
 {
 	std::string	name;

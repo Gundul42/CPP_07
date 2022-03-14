@@ -6,7 +6,7 @@
 /*   By: graja <graja@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:24:46 by graja             #+#    #+#             */
-/*   Updated: 2022/03/13 13:59:16 by graja            ###   ########.fr       */
+/*   Updated: 2022/03/14 10:22:35 by graja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ class Array
 		}
 
 		//Copy constructor
+		//Important ! Must be initialized before
+		//you can use it with operator=
+		//check with valgrind !
 		Array(Array const & cpy): _member(0), _array(NULL)
 		{	
 			*this = cpy;
